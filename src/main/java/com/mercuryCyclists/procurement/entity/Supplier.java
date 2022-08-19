@@ -39,7 +39,7 @@ public class Supplier {
         if(c.validate()) {
             contactSet.add(c);
         } else {
-            throw new RuntimeException("Contact invalid");
+            throw new IllegalStateException("Contact invalid");
         }
 
     }

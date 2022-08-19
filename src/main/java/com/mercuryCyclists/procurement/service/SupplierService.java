@@ -85,6 +85,11 @@ public class SupplierService {
             throw new IllegalStateException("Invalid supplier");
 
         }
+        if(!contact.validate()){
+            throw new IllegalStateException("Invalid contact");
+
+        }
+
         Optional<Supplier> existingSupplier = supplierRepository.findById(supplier.getId());
         if(!existingSupplier.isPresent()) {
             throw new IllegalStateException(String.format("Supplier with Id %s does not exist", supplier.getId()));
