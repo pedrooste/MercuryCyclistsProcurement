@@ -3,6 +3,7 @@ package com.mercuryCyclists.procurement.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Supplier Entity / DAO
@@ -20,6 +21,8 @@ public class Supplier {
     private String companyName;
 
     private String base;
+    @OneToMany
+    private Set<Contact> contactSet;
 
     /**
      * Checks to see whether supplier is valid
@@ -29,5 +32,9 @@ public class Supplier {
             return false;
         }
         return true;
+    }
+
+    public void addContact(Contact c) {
+        contactSet.add(c);
     }
 }

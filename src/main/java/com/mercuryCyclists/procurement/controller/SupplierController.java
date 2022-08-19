@@ -1,5 +1,6 @@
 package com.mercuryCyclists.procurement.controller;
 
+import com.mercuryCyclists.procurement.entity.Contact;
 import com.mercuryCyclists.procurement.service.SupplierService;
 import com.mercuryCyclists.procurement.entity.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,9 @@ public class SupplierController {
      */
     @PutMapping()
     public Supplier updateSupplier(@RequestBody Supplier supplier) { return supplierService.updateSupplier(supplier); }
+
+    @PutMapping("/{supplierId}")
+    public Supplier addContact(@PathVariable("supplierId") Long supplierId, @RequestBody Contact contact) { return supplierService.addContact(supplierService.getSupplier(supplierId), contact); }
 
     /**
      * Deletes existing supplier based on Id

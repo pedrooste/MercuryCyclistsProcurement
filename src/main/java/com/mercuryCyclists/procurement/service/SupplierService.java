@@ -1,6 +1,8 @@
 package com.mercuryCyclists.procurement.service;
 
+import com.mercuryCyclists.procurement.entity.Contact;
 import com.mercuryCyclists.procurement.entity.Supplier;
+import com.mercuryCyclists.procurement.repository.ContactRepository;
 import com.mercuryCyclists.procurement.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,5 +78,20 @@ public class SupplierService {
             throw new IllegalStateException(String.format("Supplier with Id %s does not exist",supplierId));
         }
         supplierRepository.delete(existingSupplier.get());
+    }
+
+    public Supplier addContact(Supplier supplier, Contact contact) {
+        if(!supplier.validate()){
+            throw new IllegalStateException("Invalid supplier");
+
+        }
+        Optional<Supplier> existingSupplier = supplierRepository.findById(supplier.getId());
+        if(!existingSupplier.isPresent()) {
+            throw new IllegalStateException(String.format("Supplier with Id %s does not exist", supplier.getId()));
+        }
+
+        existingSupplier.get().addContact(contact);
+        supplierRepository.save(supplier);
+        return supplier;
     }
 }
