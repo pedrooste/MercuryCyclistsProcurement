@@ -21,6 +21,7 @@ public class Supplier {
     private String companyName;
 
     private String base;
+
     @OneToMany
     private Set<Contact> contactSet;
 
@@ -35,6 +36,11 @@ public class Supplier {
     }
 
     public void addContact(Contact c) {
-        contactSet.add(c);
+        if(c.validate()) {
+            contactSet.add(c);
+        } else {
+            throw new RuntimeException("Contact invalid");
+        }
+
     }
 }
