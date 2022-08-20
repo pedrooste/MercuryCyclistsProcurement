@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Service for contact
+ */
 public class ContactService {
     private final ContactRepository contactRepository;
 

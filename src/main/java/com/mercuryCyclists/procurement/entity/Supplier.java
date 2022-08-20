@@ -3,6 +3,7 @@ package com.mercuryCyclists.procurement.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -22,8 +23,8 @@ public class Supplier {
 
     private String base;
 
-    @OneToMany
-    private Set<Contact> contactSet;
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
+    private Set<Contact> contactSet = new HashSet<Contact>();
 
     /**
      * Checks to see whether supplier is valid
@@ -36,11 +37,17 @@ public class Supplier {
     }
 
     public void addContact(Contact c) {
-        if(c.validate()) {
-            contactSet.add(c);
-        } else {
-            throw new IllegalStateException("Contact invalid");
-        }
+        contactSet.add(c);
+    }
 
+    public void removeContact(Contact c) {
+        if(contactSet.contains(c)) {
+            contactSet.remove(c);
+        }
+    }
+
+    public void updateContact(Contact c) {
+        contactSet.remove(c);
+        contactSet.add(c);
     }
 }
