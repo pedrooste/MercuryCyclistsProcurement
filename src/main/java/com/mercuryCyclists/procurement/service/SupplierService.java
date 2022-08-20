@@ -1,5 +1,6 @@
 package com.mercuryCyclists.procurement.service;
 
+import com.mercuryCyclists.procurement.entity.Contact;
 import com.mercuryCyclists.procurement.entity.Supplier;
 import com.mercuryCyclists.procurement.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +77,66 @@ public class SupplierService {
             throw new IllegalStateException(String.format("Supplier with Id %s does not exist",supplierId));
         }
         supplierRepository.delete(existingSupplier.get());
+    }
+    /**
+     * adds contact to supplier
+     */
+    public Supplier addContact(Supplier supplier, Contact contact) {
+        if(!supplier.validate()){
+            throw new IllegalStateException("Invalid supplier");
+        }
+        if(!contact.validate()){
+            throw new IllegalStateException("Invalid contact");
+        }
+
+        Optional<Supplier> existingSupplier = supplierRepository.findById(supplier.getId());
+        if(!existingSupplier.isPresent()) {
+            throw new IllegalStateException(String.format("Supplier with Id %s does not exist", supplier.getId()));
+        }
+        contact.setId(null);
+        existingSupplier.get().addContact(contact);
+        supplierRepository.save(supplier);
+        return supplier;
+    }
+    /**
+     * updates contact of supplier
+     */
+    public Supplier updateContact(Supplier supplier, Contact contact) {
+        if(!supplier.validate()){
+            throw new IllegalStateException("Invalid supplier");
+        }
+        if(!contact.validate()){
+            throw new IllegalStateException("Invalid contact");
+        }
+
+        Optional<Supplier> existingSupplier = supplierRepository.findById(supplier.getId());
+        if(!existingSupplier.isPresent()) {
+            throw new IllegalStateException(String.format("Supplier with Id %s does not exist", supplier.getId()));
+        }
+
+        existingSupplier.get().updateContact(contact);
+        supplierRepository.save(supplier);
+
+        return supplier;
+    }
+    /**
+     * deletes contact of a supplier
+     */
+    public Supplier deleteContact(Long supplierId, Long contactId) {
+        Optional<Supplier> existingSupplier = supplierRepository.findById(supplierId);
+
+        if(!existingSupplier.isPresent()){
+            throw new IllegalStateException(String.format("Supplier with Id %s does not exist",supplierId));
+        }
+        Contact contact = new Contact();
+        contact.setId(contactId);
+
+//        if(!existingSupplier.get().getContactSet().contains(contact)){
+//            throw new IllegalStateException(String.format("Contact with Id %s does not exist",supplierId));
+//        }
+        existingSupplier.get().getContactSet().remove(contact);
+
+        supplierRepository.save(existingSupplier.get());
+        return existingSupplier.get();
     }
 }
