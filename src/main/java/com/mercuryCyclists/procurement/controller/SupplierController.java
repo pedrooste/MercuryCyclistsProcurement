@@ -66,6 +66,9 @@ public class SupplierController {
     @DeleteMapping(path="{supplierId}")
     public void deleteSupplier (@PathVariable("supplierId") Long supplierId) { supplierService.deleteSupplier(supplierId); }
 
+    /**
+     * deletes contact of a supplier
+     */
     @DeleteMapping(path="/{supplierId}/{contactId}")
     public Supplier deleteSupplierContact (@PathVariable("supplierId") Long supplierId, @PathVariable("contactId") Long contactId) {
         return supplierService.deleteContact(supplierId, contactId);
