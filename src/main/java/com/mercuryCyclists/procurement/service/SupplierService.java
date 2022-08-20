@@ -2,7 +2,6 @@ package com.mercuryCyclists.procurement.service;
 
 import com.mercuryCyclists.procurement.entity.Contact;
 import com.mercuryCyclists.procurement.entity.Supplier;
-import com.mercuryCyclists.procurement.repository.ContactRepository;
 import com.mercuryCyclists.procurement.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

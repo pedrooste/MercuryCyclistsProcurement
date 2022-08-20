@@ -1,7 +1,6 @@
 package com.mercuryCyclists.procurement.controller;
 
 import com.mercuryCyclists.procurement.entity.Contact;
-import com.mercuryCyclists.procurement.service.ContactService;
 import com.mercuryCyclists.procurement.service.SupplierService;
 import com.mercuryCyclists.procurement.entity.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
