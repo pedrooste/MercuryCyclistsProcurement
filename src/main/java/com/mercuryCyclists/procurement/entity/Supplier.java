@@ -35,19 +35,4 @@ public class Supplier {
         }
         return true;
     }
-
-    public void addContact(Contact c) {
-        contactSet.add(c);
-    }
-
-    public void removeContact(Contact c) {
-        if(contactSet.contains(c)) {
-            contactSet.remove(c);
-        }
-    }
-
-    public void updateContact(Contact c) {
-        contactSet.remove(c);
-        contactSet.add(c);
-    }
 }
