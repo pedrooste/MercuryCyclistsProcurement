@@ -31,17 +31,4 @@ public class Contact {
         }
         return true;
     }
-
-    public boolean equals(Object another) {
-        //System.out.println("Does it equal?" + (this.id == ((Contact)another).id));
-        return this.id == ((Contact)another).id;
-    }
-
-    public int hashCode() {
-        // Fixes a minor bug with hibernate initializing the ID after the item is put in the set
-        if(id == null) {
-            id = new Long(1);
-        }
-        return id.hashCode();
-    }
 }
