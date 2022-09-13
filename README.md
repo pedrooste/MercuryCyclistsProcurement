@@ -25,7 +25,7 @@ For windows
 ###Create topic
 `.\bin\windows\kafka-topics.bat --create --topic backorder --bootstrap-server localhost:9092`
 
-###Test send a topic
+###Test send a message
 `.\bin\windows\kafka-console-producer.bat --topic backorder --bootstrap-server localhost:9092`
 
 `{"id": 55, "productId" : 1, "test" : "extra"}`
