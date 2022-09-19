@@ -26,6 +26,9 @@ public class Supplier {
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
     private Set<Contact> contactSet = new HashSet<Contact>();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<Long> backOrders = new HashSet<>();
+
     /**
      * Checks to see whether supplier is valid
      */
