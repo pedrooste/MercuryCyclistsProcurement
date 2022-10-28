@@ -27,7 +27,7 @@ public class Supplier {
     private Set<Contact> contactSet = new HashSet<Contact>();
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private Set<Long> backOrders = new HashSet<>();
+    private Set<String> backOrders = new HashSet<>();
 
     /**
      * Checks to see whether supplier is valid
