@@ -48,7 +48,7 @@ public class KafkaListeners {
         try{
             JsonObject backorder = jsonParser.parse(data).getAsJsonObject();
 
-            Long saleId =  backorder.get("id").getAsLong();
+            String saleId =  backorder.get("id").getAsString();
             String productId =  backorder.get("productId").getAsString();
 
             Map<String, String> params = new HashMap<>();
